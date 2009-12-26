@@ -188,6 +188,7 @@ import me.zadget.common.Label;
 import me.zadget.common.Pin;
 import me.zadget.common.Util;
 import me.zadget.chart.Plot;
+import flash.events.*;
 
 class LineClip extends Sprite {
     //    public var data:Array;
@@ -231,6 +232,7 @@ class LineClip extends Sprite {
 
 	    if(use_dot) {
 		var dot:Pin = new Pin('[' + (i+1) + ']=' + value, color, true);
+		dot.mouseOverScale = 1.5;
 		addChild(dot);
 		pinList.push(dot);
 	    }

@@ -251,6 +251,7 @@ class Dot extends Pin {
     public function Dot(tooltipText:String, color:Number=0) {
 	super(tooltipText, color, true);
 	Util.installShadow(this, 3);
+	this.mouseOverScale = 2.0;
     }
 
     override public function draw():void {
