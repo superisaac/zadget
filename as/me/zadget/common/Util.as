@@ -16,12 +16,10 @@ package me.zadget.common {
 			 0x8a2be2, // BlueVoilet
 			 0xa52a2a, // Brown
 			 0x00ffff, // Aqua
-			 0xfff8ff, // AliceBlue
+			 0xdeb887, // BurlyWood
 			 0x7fffd4, // Aquamarine
 			 0xf0ffff, // Azure
-			 0x000000, // Black
 			 0xffebcd, // BlanchedAlmond
-			 0xdeb887, // BurlyWood
 			 0x5f9ea0, // CadetBlue
 			 0x7fff00, // Chartreuse
 			 0xd2691e, // Chocolate
@@ -46,10 +44,12 @@ package me.zadget.common {
 			 0xffc0c8, // Pink
 			 0xff0000, // Red
 			 0x8b4513, // SaddleBrown
+			 0x000000, // Black
 			 0xc0c0c0, // Silver
 			 0x87ceeb, // Skyblue
 			 0xd2b48c, // Tan
 			 0xee82ee, // Violet
+			 0xfff8ff, // AliceBlue
 			 0xffff00, // Yellow
 			 0x9acd32, // Yellow green
 			 ];
