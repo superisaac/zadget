@@ -77,7 +77,7 @@ function plot() {
     s += "      {title:'Trends of A' }); \n";
     s += "widget.lines([{value: 2.1, label: 'week1'}, \n";
     s += "      {value: -3.1, label: ' week2'}, \n";
-    s += "      {value: 6.7, label: 'week3'}, \n";
+    s += "      {value: NaN, label: 'week3'}, \n";
     s += "      {value: 6.8, label: 'week4'}, \n";
     s += "      {value: 4.3, label: 'week5'}, \n";
     s += "      {value: -1.7, label: 'week6'},\n";
