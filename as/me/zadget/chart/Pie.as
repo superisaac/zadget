@@ -18,10 +18,13 @@ package me.zadget.chart {
     public class Pie extends Widget {
 	private var data:Array = new Array();
 	private var option:Object = new Object();
+	private const PIE_SIZE:Number = 450;
+	private var maxLabelRight:Number = PIE_SIZE;
 
 	public function Pie() {
 
 	}
+
 	public static function handlePie(data:Array, option:Object=null):void {
 	    var pie:Pie;
 	    pie = new Pie();
@@ -31,11 +34,11 @@ package me.zadget.chart {
 	}
 
         public override function get logicWidth():Number {
-	    return 500;
+	    return maxLabelRight + 20;
 	}
 
 	public override function get logicHeight():Number {
-	    return 500;
+	    return PIE_SIZE;
 	}
 
 	override public function stageSizeChanged():void {
@@ -60,37 +63,30 @@ package me.zadget.chart {
 	    }
 	}
 
-	public function get centerX():Number {
-	    return logicWidth / 2;
-	}
-
-	public function get centerY():Number {
-	    return logicHeight / 2;
-	}
-
-	public function get radius():Number {
-	    return logicWidth / 4;
-	}
-
-	private function drawLabelAndLink(angle:Number,
+	private function drawLabelAndLink(i:Number,
+					  color:Number,
 					  label:String):void {
-	    var endR:Number = radius * 1.3;
+
+	    const labelY:Number = PIE_SIZE * (0.5 - 1/2.4) + i * 24;
 	    var g:Graphics = this.graphics;
-	    g.lineStyle(0, 1);
-	    g.moveTo(centerX + radius * Math.cos(angle),
-		     centerY + radius * Math.sin(angle));
-	    g.lineTo(centerX + endR * Math.cos(angle), 
-		     centerY + endR * Math.sin(angle));
-	    
-	    endR += 20;
-	    var tf:Label = new Label(label);
-	    //tf.background = true;
-	    tf.x = centerX + endR * Math.cos(angle) - tf.width / 2;
-	    tf.y = centerY + endR * Math.sin(angle) - 12;
+	    g.beginFill(color);
+	    g.drawRect(PIE_SIZE, labelY + 8, 10, 10);
+	    g.endFill();
+
+	    var tf:Label = new Label(label, color);
+	    tf.x = PIE_SIZE  + 16;
+	    tf.y = labelY;
 	    addChild(tf);
+
+	    if(maxLabelRight < tf.x + tf.width) {
+		maxLabelRight = tf.x + tf.width;
+	    }
 	}
 	
 	private function draw():void {
+	    const radius:Number = PIE_SIZE / 2.4;
+	    const centerX:Number = PIE_SIZE / 2;
+	    const centerY:Number = PIE_SIZE / 2;
 	    var start_angle:Number = 0;
 	    var angle:Number;
 	    var i:int = 0;
@@ -108,11 +104,11 @@ package me.zadget.chart {
 	    for(i = 0; i< data.length; i++) {
 		var elem:Object = data[i];
 		angle = Math.PI * 2 * elem.percent;
-		var text:String = (Math.round(elem.percent * 10000) / 100) + '%';
+		var text:String = elem.label + ': ' + (Math.round(elem.percent * 10000) / 100) + '%';
 		var fillColor:Number = Util.chooseColor;
 		var fan:Fan = new Fan(radius, start_angle, angle, 
 				      fillColor, text, use_3d);
-		drawLabelAndLink(start_angle + angle/2, elem.label) 
+		drawLabelAndLink(i, fillColor, elem.label);
 		fan.x = centerX;
 		fan.y = centerY;
 		addChild(fan);

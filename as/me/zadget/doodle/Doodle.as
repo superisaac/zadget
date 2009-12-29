@@ -184,7 +184,6 @@ class Canvas extends Sprite
     }
 
     public function onRollout(ev:MouseEvent):void {
-	trace("roll out");
 	onMouseUp(ev);
     }
 

@@ -12,7 +12,7 @@ initCode += "widget.install();\n\n";
 var widget;
 function pageLoaded() {
     widget = new Zadget('container_1');
-    //widget.swfUrl += '?rand=' + Math.random();
+    widget.swfUrl += '?rand=' + Math.random();
     widget.backgroundColor = '#fdffce';
     widget.connect('log.info', flash_info);
     widget.connect('log.error', flash_error);

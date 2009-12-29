@@ -1,4 +1,4 @@
-/*
+/**
  * Zadget - the all-in-one mini flash gadget http://zadget.me
  * Copyright (C) 2008-2009 Zeng Ke
  * 
@@ -91,8 +91,6 @@ package  {
 	    _tooltip.border = true;
 	    _tooltip.autoSize =  TextFieldAutoSize.CENTER;
 	    _tooltip.visible = false;
-	    //_tooltip.text = 'AAA';
-	    //_tooltip.setTextFormat(format);
 	    addChild(_tooltip);
 	}
 	private var format:TextFormat = null;
@@ -103,17 +101,17 @@ package  {
 	    }
 	    _tooltip.text = msg;
 	    _tooltip.setTextFormat(format);
-	    _tooltip.x = mouseX + 10;
 	    _tooltip.background = true;
-	    //_tooltip.backgroundColor = 0xffffff;
-	    if(_tooltip.x + _tooltip.width >= stage.stageWidth) {
-		_tooltip.x -= _tooltip.width - 20;
-	    }
+	    _tooltip.x = mouseX - _tooltip.width - 10;
+	    _tooltip.y = mouseY - _tooltip.height - 10;
 
-	    if(_tooltip.y + _tooltip.height >= stage.stageHeight) {
-		_tooltip.y -= _tooltip.height - 20;
+	    //_tooltip.backgroundColor = 0xffffff;
+	    if(_tooltip.x < 2) {
+		_tooltip.x = 2;
 	    }
-	    _tooltip.y = mouseY + 10;
+	    if(_tooltip.y < 2) {
+		_tooltip.y = 2;
+	    }
 	    _tooltip.visible = true;
 	}
 
@@ -147,15 +145,8 @@ package  {
 
 	    ExternalInterface.addCallback('post', postEvent);
             ExternalInterface.addCallback('setOption', setOption);
-            ExternalInterface.addCallback('checkin', checkin);
 	    ExternalInterface.addCallback('clear', clearWidget);
         }
-
-	/*public function handleStop():void {
-	    if(currentWidget) {
-		currentWidget.stopPlay();
-	    }
-	    }*/
 
 	public function postEvent(type:String, data:Object=null):void {
 	    if(currentWidget) {
@@ -164,12 +155,6 @@ package  {
 		currentWidget.dispatchEvent(event);
 	    }	    
 	}
-
-	/*public function handleSetVolume(v:Number):void {
-	    if(currentWidget) {
-		currentWidget.setVolume(v);
-	    }
-	    }*/
 
 	public function clearWidget():void {
 	    if(_currentWidget) {
@@ -201,16 +186,10 @@ package  {
 	    }
 	}
 
-        private var _source:String = '';
-        private function checkin(source:String=''):String {
-            _source = source;
-            return 'ok';
-        }
-
 	public static function trigger(sort:String, data:Object=null):void {
 	    var event:Object = new Object();
 	    event.source = Util.getOption(instance.loaderInfo.parameters, 
-					  'source', main.instance._source);
+					  'source', '');
 	    event.sort = sort;
 	    event.data = data;
 	    if(instance.currentWidget) {
@@ -218,13 +197,11 @@ package  {
 	    }
 	    ExternalInterface.call('dispatchEvent', event);
 	}
-	
+
 	public function main() {
 	    Security.allowDomain('*');
 	    stage.align = 'tl';
             stage.scaleMode = StageScaleMode.NO_SCALE;
-
-
 	    stage.addEventListener('resize', stageSizeChanged);
             _instance = this;
 	    _container = new Sprite();
@@ -232,6 +209,7 @@ package  {
 	    createTooltip();
 	    createLogo();
             registerCallbacks();
+	    trigger('ready');
 	}
     }
 }
