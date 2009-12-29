@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
 use strict;
-my @all = qw/plot media doodle/;
+my @all = qw/plot media doodle math/;
 
 my %opt_dict = ();
 

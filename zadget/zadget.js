@@ -207,3 +207,8 @@ Zadget.prototype.doodle = function(option) {
 Zadget.prototype.playFLV = function(url, option) {
     return this.ready(function(swfobj) { swfobj.playFLV(url, option); });
 }
+
+Zadget.prototype.formula = function(expr) {
+    return this.ready(function(swfobj) { swfobj.formula(expr); });
+}
+

@@ -5,7 +5,7 @@ DOODLE_SWF=swf/doodle.swf
 
 SOURCES=main.as Log.as $(shell find me/zadget -name '*.as')
 
-CONFIG_ALL=$(shell ./feature.pl all)
+CONFIG_ALL=$(shell ./feature.pl all -math)
 CONFIG_PLOT=$(shell ./feature.pl plot)
 CONFIG_MEDIA=$(shell ./feature.pl media)
 CONFIG_DOODLE=$(shell ./feature.pl doodle)

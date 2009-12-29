@@ -29,6 +29,7 @@ package  {
     import me.zadget.media.Image;
 
     import me.zadget.doodle.Doodle;
+    import me.zadget.math.Formula;
 
     import me.zadget.common.Widget;
     import me.zadget.common.WidgetEvent;
@@ -142,6 +143,10 @@ package  {
 
 	    CONFIG::use_doodle {
 		ExternalInterface.addCallback('doodle', Doodle.handleDoodle);
+	    }
+
+	    CONFIG::use_math {
+		ExternalInterface.addCallback('formula', Formula.handleForumla);
 	    }
 
 	    ExternalInterface.addCallback('post', postEvent);
