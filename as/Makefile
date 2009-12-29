@@ -5,10 +5,10 @@ DOODLE_SWF=swf/doodle.swf
 
 SOURCES=main.as Log.as $(shell find me/zadget -name '*.as')
 
-CONFIG_ALL=-define=CONFIG::use_plot,true -define=CONFIG::use_media,true -define=CONFIG::use_doodle,true
-CONFIG_PLOT=-define=CONFIG::use_plot,true -define=CONFIG::use_media,false -define=CONFIG::use_doodle,false
-CONFIG_MEDIA=-define=CONFIG::use_plot,false -define=CONFIG::use_media,true -define=CONFIG::use_doodle,false
-CONFIG_DOODLE=-define=CONFIG::use_plot,false -define=CONFIG::use_media,false -define=CONFIG::use_doodle,true
+CONFIG_ALL=$(shell ./feature.pl all)
+CONFIG_PLOT=$(shell ./feature.pl plot)
+CONFIG_MEDIA=$(shell ./feature.pl media)
+CONFIG_DOODLE=$(shell ./feature.pl doodle)
 
 MXMLC_OPTIONS=-default-size=500,500
 
