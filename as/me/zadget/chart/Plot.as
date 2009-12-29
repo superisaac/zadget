@@ -208,9 +208,12 @@ class LineClip extends Sprite {
 	for(i=0; i< data.length; i++) {
 	    var elem:Object = data[i];
 	    var value:Number = NaN;
-	    if(elem is Number) {
+            if(isNaN(elem as Number)) {
+                value = NaN;
+                processedData.push({value: NaN});
+            } else if(elem is Number) {
 		value = elem as Number;
-		processedData.push({value: elem});
+		processedData.push({value: value});
 	    } else if(elem.hasOwnProperty('value')) {
 		processedData.push(elem);
 		value = elem.value;
@@ -231,10 +234,14 @@ class LineClip extends Sprite {
 	    }
 
 	    if(use_dot) {
-		var dot:Pin = new Pin('[' + (i+1) + ']=' + value, color, true);
-		dot.mouseOverScale = 1.5;
-		addChild(dot);
-		pinList.push(dot);
+                if(isNaN(value)) {
+                    pinList.push(null);
+                } else {
+                    var dot:Pin = new Pin('[' + (i+1) + ']=' + value, color, true);
+                    dot.mouseOverScale = 1.5;
+                    addChild(dot);
+                    pinList.push(dot);
+                }
 	    }
 	}
     }
@@ -260,21 +267,29 @@ class LineClip extends Sprite {
 	graphics.clear();
 	graphics.lineStyle(3, color);
 
+        var nonNaNIndex:int = -1;
 	for(i =0; i< processedData.length; i++) {
 	    var v:Number = processedData[i].value as Number;
+            if(isNaN(v)) {
+                main.dtrace("continue due to NaN " + i);
+                continue;
+            }
+            nonNaNIndex++;
 	    var x:Number = i * cellWidth;
 	    var y:Number = gridHeight * (gridMax - v)/(gridMax - gridMin);
-	    if(i == 0) {
+	    if(nonNaNIndex == 0) {
 		graphics.moveTo(x, y);
 	    } else {
 		graphics.lineTo(x, y);
 	    }
 	    if(use_dot) {
 		var pin:Pin = pinList[i] as Pin;
-		pin.x = x;
-		pin.y = y;
-		pin.scaleX = pinScaleX;
-		pin.scaleY = pinScaleY;
+                if(pin) {
+                    pin.x = x;
+                    pin.y = y;
+                    pin.scaleX = pinScaleX;
+                    pin.scaleY = pinScaleY;
+                }
 	    } 
 	}
 

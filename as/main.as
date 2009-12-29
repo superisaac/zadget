@@ -70,7 +70,7 @@ package  {
 	    
 	    var tf:TextField = new TextField();
 	    var format:TextFormat = new TextFormat();
-	    format.font = 'Comic';
+	    format.font = Util.labelFont;
 	    format.size = 16;
 	    format.color = '0x002266';
 
@@ -98,6 +98,7 @@ package  {
 	    if(format == null) {
 		format = new TextFormat();
 		format.size = 20;
+                format.font = Util.labelFont;
 	    }
 	    _tooltip.text = msg;
 	    _tooltip.setTextFormat(format);

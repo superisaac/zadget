@@ -22,7 +22,7 @@ package me.zadget.common {
 	}
 	public static function getTextFormat(color:Object):TextFormat {
 	    var format:TextFormat = new TextFormat();
-            format.font = 'Arial';
+            format.font = Util.labelFont;
 	    format.color = color;
 	    format.size = 20;
 	    return format;

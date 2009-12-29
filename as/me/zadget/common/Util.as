@@ -9,7 +9,7 @@
 package me.zadget.common {
     import flash.display.DisplayObject;
     import flash.filters.*;
-
+    
     public class Util {
     public static var colorTable:Array = [
 			 0x0000ff, // Blue
@@ -68,6 +68,7 @@ package me.zadget.common {
 	    nextColorIndex = 0;
 	}
 
+        public static var labelFont:String = 'Arial';
 	public static function getOption(option:Object, key:String, defaultVal:Object):Object {
 	    if(option && option.hasOwnProperty(key)) {
 		return option[key];

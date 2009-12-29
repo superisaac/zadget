@@ -62,18 +62,18 @@ function flash_dtrace(msg) {
 
 function plot() {
     show();
-    widget.lines([ 3.1, 3.2, 1.4, 9.8, 6.1, 3.45, {value: 8.4, label: 'last'}],
+    widget.lines([NaN, 3.1, 3.2, 1.4, 9.8, 6.1, 3.45, {value: 8.4, label: 'last'}],
 		 {title:'Trends of A' });
     widget.lines([{value: 2.1, label: 'week1'},
 		  {value: -3.1, label: 'week2'}, 
-		  {value: 6.7, label: 'week3'}, 
+		  {value: NaN, label: 'week3'}, 
 		  {value: 6.8, label: 'week4'}, 
 		  {value: 4.3, label: 'week5'}, 
 		  {value: -1.7, label: 'week6'},
 		  {value: 1.5, label: 'week7'},
 		  {value: 1.12, label: 'week8'}],
 		 {use_dot: true, title:'Trends of B' });
-    var s = "widget.lines([ 3.1, 3.2, 1.4, 9.8, 6.1, 3.45, {value: 8.4, label: 'last'}], \n";
+    var s = "widget.lines([NaN, 3.1, 3.2, 1.4, 9.8, 6.1, 3.45, {value: 8.4, label: 'last'}], \n";
     s += "      {title:'Trends of A' }); \n";
     s += "widget.lines([{value: 2.1, label: 'week1'}, \n";
     s += "      {value: -3.1, label: ' week2'}, \n";
